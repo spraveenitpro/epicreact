@@ -9,7 +9,15 @@
 	<script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
 
 	<script type="text/babel">
-		const element = <div className="container">Hello World</div>
+		const className = 'container'
+		const children = 'Hello World'
+		const props = {children, className}
+		console.log({id: ',y-thing', ...props})
+		const element = (
+			<div id="my-thing" {...props}>
+				{props.children.toUpperCase()}
+			</div>
+		)
 		console.log(element)
 
 		ReactDOM.render(element, document.getElementById('root'))
