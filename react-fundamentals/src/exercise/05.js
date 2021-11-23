@@ -17,13 +17,13 @@ const mediumBox = <div>medium pink box</div>
 const largeBox = <div>large orange box</div>
 
 function App() {
-  return (
-    <div>
-      {smallBox}
-      {mediumBox}
-      {largeBox}
-    </div>
-  )
+	return (
+		<div>
+			{smallBox}
+			{mediumBox}
+			{largeBox}
+		</div>
+	)
 }
 
 export default App
