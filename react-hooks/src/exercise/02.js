@@ -3,15 +3,23 @@
 
 import React from 'react'
 
-function useLocalStorageState(key, defaultValue = '') {
-    const [state, setState] = React.useState(
-        () => window.localStorage.getItem(key) || defaultValue,
-    )
+function useLocalStorageState(
+    key,
+    defaultValue = '',
+    {serialize = JSON.stringify, deserialize = JSON.parse} = {},
+) {
+    const [state, setState] = React.useState(() => {
+        const valueInLocalStorage = window.localStorage.getItem(key)
+        if (valueInLocalStorage) {
+            return deserialize(valueInLocalStorage)
+        }
+        return defaultValue
+    })
 
     React.useEffect(() => {
         console.log('Calling useEffect')
-        window.localStorage.setItem(key, state)
-    }, [key, state])
+        window.localStorage.setItem(key, serialize(state))
+    }, [key, serialize, state])
     return [state, setState]
 }
 
