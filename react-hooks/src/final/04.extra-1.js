@@ -3,12 +3,12 @@
 // http://localhost:3000/isolated/final/04.extra-1.js
 
 import * as React from 'react'
+import {useLocalStorageState} from '../utils'
 
 function Board() {
-    const [squares, setSquares] = React.useState(
-        () =>
-            JSON.parse(window.localStorage.getItem('squares')) ||
-            Array(9).fill(null),
+    const [squares, setSquares] = useLocalStorageState(
+        'squares',
+        Array(9).fill(null),
     )
 
     React.useEffect(() => {
