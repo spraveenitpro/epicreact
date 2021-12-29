@@ -86,3 +86,7 @@ function login(formData) {
     console.log('login', formData)
 }
 ```
+
+## Day 4
+
+-   Adding Styles to components via emotion.sh
