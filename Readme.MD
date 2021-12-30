@@ -90,3 +90,7 @@ function login(formData) {
 ## Day 4
 
 -   Adding Styles to components via emotion.sh
+
+## Day 5
+
+-   Make HTTP requests to a backend API
