@@ -94,3 +94,7 @@ function login(formData) {
 ## Day 5
 
 -   Make HTTP requests to a backend API
+
+## Day 6
+
+-   Wrote an article on learning experiments: https://praveen.blog/2022/01/01/getting-started-with-learning-experiments/
