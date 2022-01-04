@@ -98,3 +98,24 @@ function login(formData) {
 ## Day 6
 
 -   Wrote an article on learning experiments: https://praveen.blog/2022/01/01/getting-started-with-learning-experiments/
+
+## Day 7
+
+-   Revisiting basics
+-   Programmatically interacting with the DOM elements using JavaScript
+
+```
+<html>
+    <body></body>
+    <script type="module">
+        let rootElement = document.createElement('div')
+        rootElement.setAttribute('id', 'root')
+        document.body.append(rootElement)
+
+        let element = document.createElement('div')
+        element.textContent = 'Hello World'
+        element.className = 'container'
+        rootElement.appendChild(element)
+    </script>
+</html>
+```

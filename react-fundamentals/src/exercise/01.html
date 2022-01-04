@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		 
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>JS Bin</title>
-		 
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<script type="module">
-			const element = document.createElement('div')
-			element.textContent = new Date()
-			element.className = 'container'
-			const rootElement = document.createElement('div')
-			rootElement.setAttribute('id', 'root')
-			document.body.append(rootElement)
-			rootElement.append(element)
-		</script>
-	</body>
+<html>
+    <body></body>
+    <script type="module">
+        let rootElement = document.createElement('div')
+        rootElement.setAttribute('id', 'root')
+        document.body.append(rootElement)
+
+        let element = document.createElement('div')
+        element.textContent = 'Hello World'
+        element.className = 'container'
+        rootElement.appendChild(element)
+    </script>
 </html>
