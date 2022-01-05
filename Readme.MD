@@ -119,3 +119,102 @@ function login(formData) {
     </script>
 </html>
 ```
+
+## Day 8
+
+We need two JavaScript files to write React applications for
+the web:
+
+-   React: responsible for creating React elements (kinda like
+    `document.createElement()`)
+-   ReactDOM: responsible for rendering React elements to the DOM (kinda like
+    `rootElement.append()`)
+-   Using the 2 files to interact with the API
+
+```
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+
+    <script type="module">
+        const rootElement = document.getElementById('root')
+        const elementType = 'div'
+        const elementProps = {children: 'Hello World', className: 'container'}
+        const reactElement = React.createElement(elementType, elementProps)
+        ReactDOM.render(reactElement, rootElement)
+    </script>
+</body>
+```
+
+-   With Nested children:
+
+```
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+
+    <script type="module">
+        const rootElement = document.getElementById('root')
+        const element = React.createElement('div', {
+            //children: 'Hello World',
+            className: 'container',
+            children: [
+                React.createElement('span', null, 'Hello'),
+                ' ',
+                React.createElement('span', null, 'World!'),
+            ],
+        })
+
+        ReactDOM.render(element, rootElement)
+    </script>
+</body>
+```
+
+-   JSX is more intuitive than the raw React API and is easier to understand when
+    reading the code. It's fairly simple HTML-like syntactic sugar on top of the raw
+    React APIs
+
+```jsx
+const ui = <h1 id="greeting">Hey there</h1>;
+
+// ↓ ↓ ↓ ↓ compiles to ↓ ↓ ↓ ↓
+
+const ui = React.createElement("h1", { id: "greeting", children: "Hey there" });
+```
+
+-   JSX example
+
+```
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+        const element = <div className="container">Hello World</div>
+        ReactDOM.render(element, document.getElementById('root'))
+    </script>
+</body>
+```
+
+-   Spread operator
+
+```
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+        const className = 'container'
+        const children = 'Hello World'
+        const props = {className, children}
+        const element = <div {...props} />
+        ReactDOM.render(element, document.getElementById('root'))
+    </script>
+</body>
+```
