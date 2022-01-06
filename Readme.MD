@@ -219,6 +219,7 @@ const ui = React.createElement("h1", { id: "greeting", children: "Hey there" });
 </body>
 ```
 ## Day 9
+
 -   PropTypes
 
 ```
