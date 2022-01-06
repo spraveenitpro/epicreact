@@ -218,3 +218,26 @@ const ui = React.createElement("h1", { id: "greeting", children: "Hey there" });
     </script>
 </body>
 ```
+## Day 9
+-   PropTypes
+
+```
+function Message({subject, greeting}) {
+            return (
+                <div className="message">
+                    {greeting} {subject}
+                </div>
+            )
+        }
+
+        Message.propTypes = {
+            subject: PropTypes.string.isRequired,
+            greeting: PropTypes.string.isRequired,
+        }
+        const element = (
+            <>
+                <Message greeting="Hello" subject="world" />
+                <Message greeting="goodbye" subject="world" />
+            </>
+        )
+```
