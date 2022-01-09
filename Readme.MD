@@ -218,3 +218,6 @@ const ui = React.createElement("h1", { id: "greeting", children: "Hey there" });
     </script>
 </body>
 ```
+## Day 9:
+
+-   Worked on WP-calypso repository
