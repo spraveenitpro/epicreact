@@ -247,3 +247,7 @@ function Message({subject, greeting}) {
 ## Day 10
 
 - Worked on WP calypso repository
+
+## Day 11
+
+- Worked on WP calypso repository   
