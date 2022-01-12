@@ -251,3 +251,7 @@ function Message({subject, greeting}) {
 ## Day 11
 
 - Worked on WP calypso repository   
+
+## Day 12
+
+- Worked on a React Material UI component https://d.pr/i/ibUjwm 
