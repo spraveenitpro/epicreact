@@ -255,3 +255,7 @@ function Message({subject, greeting}) {
 ## Day 12
 
 - Worked on a React Material UI component https://d.pr/i/ibUjwm 
+
+## Day 13
+
+- Studied Finite fields in mathematics
