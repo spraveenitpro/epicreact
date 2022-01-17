@@ -259,3 +259,51 @@ function Message({subject, greeting}) {
 ## Day 13
 
 - Studied Finite fields in mathematics
+
+## Day 14
+
+- Handling Styling & Form Data in React:
+
+```
+function UsernameForm({onSubmitUsername}) {
+    function handleSubmit(event) {
+        event.preventDefault()
+        onSubmitUsername(event.target.elements.usernameInput.value)
+    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="usernameInput">Username:</label>
+                <input id="usernameInput" type="text" />
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    )
+}
+
+function App() {
+    const onSubmitUsername = username => alert(`You entered: ${username}`)
+    return <UsernameForm onSubmitUsername={onSubmitUsername} />
+}
+```
+
+-   With useRef:
+
+```
+function UsernameForm({onSubmitUsername}) {
+    const usernameInputRef = React.useRef()
+    function handleSubmit(event) {
+        event.preventDefault()
+        onSubmitUsername(usernameInputRef.current.value)
+    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="usernameInput">Username:</label>
+                <input id="usernameInput" type="text" ref={usernameInputRef} />
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    )
+}
+```
