@@ -307,3 +307,63 @@ function UsernameForm({onSubmitUsername}) {
     )
 }
 ```
+
+## Day 15
+
+- Provide key value for rendering group of items/array
+
+
+```
+  <li key={item.id}>
+                        <button onClick={() => removeItem(item)}>remove</button>{' '}
+                        <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
+                        <input
+                            id={`${item.id}-input`}
+                            defaultValue={item.value}
+                        />
+```
+
+- useState Hook
+
+React.useState is a function that accepts a single argument. That argument is the initial state for the instance of the component.  
+
+React.useState returns a pair of values. It does this by returning an array with two elements (and we use destructuring syntax to assign each of those values to distinct variables). The first of the pair is the state value and the second is a function we can call to update the state. We can name these variables whatever we want. Common convention is to choose a name for the state variable, then prefix set in front of that for the updater function.
+
+```
+const [count, setCount] = React.useState(0)
+```
+
+- useEffect Hook
+
+`React.useEffect` is a built-in hook that allows you to run some custom code
+after React renders (and re-renders) your component to the DOM. It accepts a
+callback function which React will call after the DOM has been updated:
+
+```javascript
+React.useEffect(() => {
+  // your side-effect code here.
+  // this is where you can make HTTP requests or interact with browser APIs.
+})
+```
+
+- Lazy initialization to avoid expensive computation
+
+const [name, setName] = React.useState(
+        () => window.localStorage.getItem('name') ?? initialName,
+)
+
+- Custom Hook 
+
+```
+function useLocalStorageState(key, defaultValue = '') {
+    const [state, setState] = React.useState(
+        () => window.localStorage.getItem(key) || defaultValue,
+    )
+
+    React.useEffect(() => {
+        window.localStorage.setItem(key, state)
+    }, [key, state])
+
+    return [state, setState]
+}
+```

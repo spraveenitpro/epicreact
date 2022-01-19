@@ -1,31 +1,23 @@
 // useEffect: persistent state
 // http://localhost:3000/isolated/exercise/02.js
 
-import React from 'react'
+import * as React from 'react'
 
-function useLocalStorageState(
-    key,
-    defaultValue = '',
-    {serialize = JSON.stringify, deserialize = JSON.parse} = {},
-) {
-    const [state, setState] = React.useState(() => {
-        const valueInLocalStorage = window.localStorage.getItem(key)
-        if (valueInLocalStorage) {
-            return deserialize(valueInLocalStorage)
-        }
-        return defaultValue
-    })
+function useLocalStorageState(key, defaultValue = '') {
+    const [state, setState] = React.useState(
+        () => window.localStorage.getItem(key) || defaultValue,
+    )
 
     React.useEffect(() => {
-        console.log('Calling useEffect')
-        window.localStorage.setItem(key, serialize(state))
-    }, [key, serialize, state])
+        window.localStorage.setItem(key, state)
+    }, [key, state])
+
     return [state, setState]
 }
 
 function Greeting({initialName = ''}) {
-    console.log('Rendering Greeting...')
     const [name, setName] = useLocalStorageState('name', initialName)
+
     function handleChange(event) {
         setName(event.target.value)
     }
@@ -41,17 +33,7 @@ function Greeting({initialName = ''}) {
 }
 
 function App() {
-    const [count, setCount] = React.useState(0)
-    return (
-        <>
-            <button
-                onClick={() => setCount(previousCount => previousCount + 1)}
-            >
-                {count}
-            </button>
-            <Greeting initialName="George!" />
-        </>
-    )
+    return <Greeting />
 }
 
 export default App
