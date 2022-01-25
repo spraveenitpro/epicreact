@@ -367,3 +367,9 @@ function useLocalStorageState(key, defaultValue = '') {
     return [state, setState]
 }
 ```
+
+- Learning experiment https://tictactictac.surge.sh/
+
+## Day 16:
+
+- Setup JEST unit testing for rock paper scissors
