@@ -373,3 +373,7 @@ function useLocalStorageState(key, defaultValue = '') {
 ## Day 16:
 
 - Setup JEST unit testing for rock paper scissors
+
+## Day 17:
+
+- Practiced Bookshelf App
