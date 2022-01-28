@@ -376,4 +376,8 @@ function useLocalStorageState(key, defaultValue = '') {
 
 ## Day 17:
 
-- Practiced Bookshelf App
+- Practiced Bookshelf App - Rendering the scaffold
+
+## Day 18:
+
+- Styling the React Bookshelf App with @Emotion
