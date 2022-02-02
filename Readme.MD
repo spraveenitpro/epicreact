@@ -381,3 +381,7 @@ function useLocalStorageState(key, defaultValue = '') {
 ## Day 18:
 
 - Styling the React Bookshelf App with @Emotion
+
+## Day 19:
+
+- React Hooks - useReducer
