@@ -385,3 +385,7 @@ function useLocalStorageState(key, defaultValue = '') {
 ## Day 19:
 
 - React Hooks - useReducer
+
+## Day 20:
+
+- CS50 week 8 JS
