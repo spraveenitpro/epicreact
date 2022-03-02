@@ -389,3 +389,7 @@ function useLocalStorageState(key, defaultValue = '') {
 ## Day 20:
 
 - CS50 week 8 JS
+
+## Day 21:
+
+- Memoization, UseCallback
