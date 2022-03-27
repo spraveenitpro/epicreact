@@ -3,28 +3,27 @@
 
 import * as React from 'react'
 
-function Greeting({initialName}) {
-    // 💣 delete this variable declaration and replace it with a React.useState call
-    const [name, setName] = React.useState('')
+function Greeting() {
+  // 💣 delete this variable declaration and replace it with a React.useState call
+  const name = ''
 
-    function handleChange(event) {
-        // 🐨 update the name here based on event.target.value
-        setName(event.target.value)
-    }
+  function handleChange(event) {
+    // 🐨 update the name here based on event.target.value
+  }
 
-    return (
-        <div>
-            <form>
-                <label htmlFor="name">Name: </label>
-                <input onChange={handleChange} id="name" value={initialName} />
-            </form>
-            {name ? <strong>Hello {name}</strong> : 'Please type your name'}
-        </div>
-    )
+  return (
+    <div>
+      <form>
+        <label htmlFor="name">Name: </label>
+        <input onChange={handleChange} id="name" />
+      </form>
+      {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+    </div>
+  )
 }
 
 function App() {
-    return <Greeting initialName="Praveen" />
+  return <Greeting />
 }
 
 export default App
