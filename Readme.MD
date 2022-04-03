@@ -393,3 +393,7 @@ function useLocalStorageState(key, defaultValue = '') {
 ## Day 21:
 
 - Memoization, UseCallback
+
+## Day 22:
+
+- Refreshed useEffect and useState
