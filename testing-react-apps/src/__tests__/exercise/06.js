@@ -22,13 +22,6 @@ function deferred() {
     })
     return {promise, resolve, reject}
 }
-// 💰 Here's an example of how you use this:
-// const {promise, resolve, reject} = deferred()
-// promise.then(() => {/* do something */})
-// // do other setup stuff and assert on the pending state
-// resolve()
-// await promise
-// // assert on the resolved state
 
 test('displays the users current location', async () => {
     const fakePosition = {
