@@ -12,8 +12,6 @@ beforeAll(() => {
     }
 })
 
-// 💰 I'm going to give you this handy utility function
-// it allows you to create a promise that you can resolve/reject on demand.
 function deferred() {
     let resolve, reject
     const promise = new Promise((res, rej) => {
