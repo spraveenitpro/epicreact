@@ -1,38 +1,44 @@
-import { useState, useEffect } from 'react'
-import Pet from './Pet'
+import { useEffect, useState } from 'react'
+import Results from './Results'
+import useBreedList from './useBreedList'
 
-const ANIMALS = ['birds', 'cat', 'dog', 'reptile', 'worm']
+const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile']
+
 const SearchParams = () => {
-    //const location = 'Seattle WA'
-    const [location, setLocation] = useState('Seattle WA')
-    const [animal, setAnimal] = useState('')
-    const [breed, setBreed] = useState('')
-    const breeds = ['poodle', 'lab']
-
+    const [location, updateLocation] = useState('')
+    const [animal, updateAnimal] = useState('')
+    const [breed, updateBreed] = useState('')
     const [pets, setPets] = useState([])
+    const [breeds] = useBreedList(animal)
+
     useEffect(() => {
         requestPets()
-    }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     async function requestPets() {
         const res = await fetch(
-            `http://pets-v2.dev-apis.com/pets?animals=${animal}&location=${location}&breed=${breed}`
+            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
         )
         const json = await res.json()
+
         setPets(json.pets)
-        console.log(json)
     }
 
     return (
         <div className="search-params">
-            <form action="">
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    requestPets()
+                }}
+            >
                 <label htmlFor="location">
-                    Location {location}
+                    Location
                     <input
                         id="location"
                         value={location}
                         placeholder="Location"
-                        onChange={(e) => setLocation(e.target.value)}
+                        onChange={(e) => updateLocation(e.target.value)}
                     />
                 </label>
                 <label htmlFor="animal">
@@ -41,12 +47,12 @@ const SearchParams = () => {
                         id="animal"
                         value={animal}
                         onChange={(e) => {
-                            setAnimal(e.target.value)
-                            setBreed('')
+                            updateAnimal(e.target.value)
+                            updateBreed('')
                         }}
                         onBlur={(e) => {
-                            setAnimal(e.target.value)
-                            setBreed('')
+                            updateAnimal(e.target.value)
+                            updateBreed('')
                         }}
                     >
                         <option />
@@ -60,14 +66,11 @@ const SearchParams = () => {
                 <label htmlFor="breed">
                     Breed
                     <select
-                        id="animal"
+                        disabled={!breeds.length}
+                        id="breed"
                         value={breed}
-                        onChange={(e) => {
-                            setBreed(e.target.value)
-                        }}
-                        onBlur={(e) => {
-                            setBreed(e.target.value)
-                        }}
+                        onChange={(e) => updateBreed(e.target.value)}
+                        onBlur={(e) => updateBreed(e.target.value)}
                     >
                         <option />
                         {breeds.map((breed) => (
@@ -79,15 +82,7 @@ const SearchParams = () => {
                 </label>
                 <button>Submit</button>
             </form>
-            {pets.map((pet) => (
-                <Pet
-                    name={pet.name}
-                    animal={pet.animal}
-                    breed={pet.breed}
-                    key={pet.id}
-                    image={pet.images[0]}
-                />
-            ))}
+            <Results pets={pets} />
         </div>
     )
 }
