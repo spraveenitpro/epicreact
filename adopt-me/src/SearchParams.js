@@ -1,4 +1,4 @@
-import { useEffect, useState, useDebugValue } from 'react'
+import { useEffect, useState } from 'react'
 import useBreedList from './useBreedList'
 import Results from './Results'
 
