@@ -1,43 +1,33 @@
-import { Component } from 'react'
+import { Suspense } from 'react'
 import { useParams } from 'react-router-dom'
+import getPet from "./getPet"
 import Carousel from './Carousel'
 
-class Details extends Component {
-    state = { loading: true }
+function DetailsParent() {
+    const { id } = useParams()
+    const resource = getPet(id)
 
-    async componentDidMount() {
-        const res = await fetch(
-            `http://pets-v2.dev-apis.com/pets?id=${this.props.params.id}`
-        )
-        const json = await res.json()
-        this.setState(Object.assign({ loading: false }, json.pets[0]))
-    }
+    return (
+        <Suspense fallback={<h2>loading …</h2>}>
+            <Details resource={resource} />
+        </Suspense>
+    )
+}
 
-    render() {
-        if (this.state.loading) {
-            return <h2>loading … </h2>
-        }
+const Details = ({ resource }) => {
+    const pet = resource.readData()
 
-        const { animal, breed, city, state, description, name, images } =
-            this.state
-
-        return (
-            <div className="details">
-                <Carousel images={images} />
-                <div>
-                    <h1>{name}</h1>
-                    <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
-                    <button>Adopt {name}</button>
-                    <p>{description}</p>
-                </div>
+    return (
+        <div className="details">
+            <Carousel images={pet.images} />
+            <div>
+                <h1>{pet.name}</h1>
+                <h2>{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
+                <button>Adopt {pet.name}</button>
+                <p>{pet.description}</p>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
-const WrappedDetails = () => {
-    const params = useParams()
-    return <Details params={params} />
-}
-
-export default WrappedDetails
+export default DetailsParent
