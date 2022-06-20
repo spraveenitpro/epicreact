@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { useParams } from 'react-router-dom'
-import getPet from "./getPet"
+import getPet from './getPet'
 import Carousel from './Carousel'
 
 function DetailsParent() {
