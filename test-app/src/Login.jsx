@@ -1,12 +1,48 @@
+import axios from 'axios'
 import { useState } from 'react'
 const Login = () => {
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [user, setUser] = useState({})
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        console.log(username, password)
+        try {
+            const { data } = await axios.get(
+                'https://jsonplaceholder.typicode.com/users/1'
+            )
+            setUser(data)
+        } catch {
+            setError(true)
+        }
+        //console.log(user.name)
+        setLoading(false)
+    }
     return (
         <div className="container">
+            <span className="user">{user.name}</span>
             <form action="">
-                <input type="text" placeholder="username" value="" />
-                <input type="password" placeholder="password" value="" />
-                <button disabled="true">Login</button>
+                <input
+                    type="text"
+                    placeholder="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                    disabled={!username || !password}
+                    onClick={handleSubmit}
+                >
+                    {loading ? 'please wait' : 'Login'}
+                </button>
                 <span
                     data-testid="error"
                     style={{ visibility: error ? 'visible' : 'hidden' }}
