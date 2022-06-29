@@ -25,4 +25,10 @@ describe('Our Application test suite', () => {
         const h1Element = screen.getByTestId('mytestid')
         expect(h1Element).toHaveTextContent('Praveen')
     })
+    test('Check if the title tag has wordpress.com string', () => {
+        const { container } = render(<App />)
+        expect(container.querySelector('title')).toHaveTextContent(
+            /wordPress.com/i
+        )
+    })
 })
