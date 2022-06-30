@@ -1,16 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import Joke from './joke'
 import JokeGenerator from './JokeGenerator'
-global.fetch = jest.fn(() => {
-    Promise.resolve({
-        json: () =>
-            Promise.resolve({
-                value: 'funniest',
-            }),
-    })
+
+async function withFetch() {
+    const res = await fetch('https://api.chucknorris.io/jokes/random')
+    const json = await res.json()
+
+    return json
+}
+// This is the section where we mock `fetch`
+const unmockedFetch = global.fetch
+
+beforeAll(() => {
+    global.fetch = () =>
+        Promise.resolve({
+            json: () => Promise.resolve('bla bla bla'),
+        })
 })
-beforeEach(() => {
-    fetch.mockClear()
+
+afterAll(() => {
+    global.fetch = unmockedFetch
 })
 
 test('Joke component receives props and renders text', () => {
@@ -22,14 +32,13 @@ test('Joke component receives props and renders text', () => {
 
 test('Component fetches random joke and renders it', () => {
     render(<JokeGenerator />)
+
     fireEvent.click(screen.getByText(/Load joke/i))
     console.log('testing')
     expect(screen.getByText('Loading...')).toBeInTheDocument()
 })
 
-test('fetch test async joke api', async () => {
-    const { getByText } = render(<JokeGenerator />)
-
-    expect(getByText(/funniest/i)).toBeInTheDocument()
-  
+test('Is the correct mocked value being returned', async () => {
+    const json = await withFetch()
+    expect(json).toBe('bla bla bla')
 })

@@ -1,12 +1,11 @@
 import './App.css'
-import Login from './Login'
+
 import Hello from './Hello'
 import Joke from './joke'
 import JokeGenerator from './JokeGenerator'
+import Posts from './Posts'
 
 function App() {
-    const a = 6
-    const b = 9
     return (
         <>
             <title>
@@ -20,6 +19,7 @@ function App() {
             <Hello />
             <Joke text="funniest joke this year" />
             <JokeGenerator />
+            <Posts />
         </>
     )
 }
