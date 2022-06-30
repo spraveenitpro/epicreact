@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+/* import { render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('Our Application test suite', () => {
@@ -32,3 +32,4 @@ describe('Our Application test suite', () => {
         )
     })
 })
+ */

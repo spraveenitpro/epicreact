@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function JokeGenerator() {
     const [joke, setJoke] = useState('')
@@ -7,19 +7,28 @@ function JokeGenerator() {
         e.preventDefault()
         setLoading(true)
         getJoke()
+        console.log(joke)
     }
+    useEffect(() => {
+        getJoke()
+    }, [])
 
-    function getJoke() {
-        fetch('https://api.chucknorris.io/jokes/random')
-            .then((res) => res.json())
-            .then((data) => setJoke(data.value))
-            .finally(() => setLoading(false))
+    async function getJoke() {
+        try {
+            const result = await fetch(
+                'https://api.chucknorris.io/jokes/random'
+            )
+            const data = await result.json()
+            setJoke(data.value)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <>
             {!joke && <div>You have not loaded any joke yet</div>}
             {loading && <div>Loading...</div>}
-            <button onClick={loadJoke}>Load a random joke</button>
+            <button onClick={loadJoke}>Load joke</button>
             {joke && <div>{joke}</div>}
         </>
     )
