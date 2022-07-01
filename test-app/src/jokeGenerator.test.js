@@ -1,12 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import Joke from './joke'
 import JokeGenerator from './JokeGenerator'
 
 async function withFetch() {
     const res = await fetch('https://api.chucknorris.io/jokes/random')
     const json = await res.json()
-
     return json
 }
 // This is the section where we mock `fetch`
@@ -30,9 +28,9 @@ test('Joke component receives props and renders text', () => {
     )
 })
 
-test('Component fetches random joke and renders it', () => {
+test('Component fetches random joke and renders it', async () => {
+    //render(<JokeGenerator />)
     render(<JokeGenerator />)
-
     fireEvent.click(screen.getByText(/Load joke/i))
     console.log('testing')
     expect(screen.getByText('Loading...')).toBeInTheDocument()
