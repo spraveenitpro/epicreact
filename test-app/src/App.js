@@ -4,8 +4,14 @@ import Hello from './Hello'
 import Joke from './joke'
 import JokeGenerator from './JokeGenerator'
 import Posts from './Posts'
-
+import { randomBetween } from './randomBetween'
+import { newforEach } from './newforEach'
 function App() {
+    const add = (num1) => {
+        return num1 * 2
+    }
+    const numbers = [1, 2, 3, 4, 5]
+    const doubledNumbers = numbers.forEach(add)
     return (
         <>
             <title>
@@ -20,6 +26,11 @@ function App() {
             <Joke text="funniest joke this year" />
             <JokeGenerator />
             <Posts />
+            {randomBetween(1, 10)}
+            {doubledNumbers &&
+                doubledNumbers.map((number) => {
+                    return <li>number</li>
+                })}
         </>
     )
 }
