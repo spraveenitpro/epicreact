@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Counter } from './Counter'
 import user from '@testing-library/user-event'
 
@@ -20,16 +20,18 @@ describe('Counter', () => {
         })
 
         describe('When + is clicked', () => {
-            beforeEach(() => {
-                fireEvent.click(screen.getByRole('button', { name: 'increment' }))
+            beforeEach(async () => {
+                await user.click(
+                    screen.getByRole('button', { name: 'increment' })
+                )
             })
             test('default count is zero and 1 when  + clicked', () => {
                 expect(screen.getByText('Current Count: 1')).toBeInTheDocument()
             })
         })
         describe('When - is clicked', () => {
-            beforeEach(() => {
-                fireEvent.click(
+            beforeEach(async () => {
+                await user.click(
                     screen.getByRole('button', { name: 'decrement' })
                 )
             })
