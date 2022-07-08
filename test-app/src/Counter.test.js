@@ -6,7 +6,7 @@ import user from '@testing-library/user-event'
 const setup = () =>
     render(<Counter defaultCount={0} description="My Counter" />)
 
-describe('Counter', () => {
+describe('Counter at zero with default incrementer', () => {
     describe('initialized with default count zero and description', () => {
         beforeEach(() => {
             setup()
@@ -42,5 +42,21 @@ describe('Counter', () => {
                 ).toBeInTheDocument()
             })
         })
+    })
+})
+
+describe('Set the incrementer to 5', () => {
+    beforeEach(async () => {
+        setup()
+        await user.type(screen.getByRole('spinbutton'), '{selectall}5')
+    })
+    test('Check if the value is 5 when + is clicked', async () => {
+        await user.click(screen.getByRole('button', { name: /increment/i }))
+        expect(screen.getByText('Current Count: 5')).toBeInTheDocument()
+    })
+
+    test('Check if the value is -5 when - is clicked', async () => {
+        await user.click(screen.getByRole('button', { name: /decrement/i }))
+        expect(screen.getByText('Current Count: -5')).toBeInTheDocument()
     })
 })

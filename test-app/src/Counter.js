@@ -11,9 +11,8 @@ export function Counter({ defaultCount = 0, description = 'My Counter' }) {
                 <input
                     type="number"
                     name="incrementer"
-                    value={incrementer}
                     onChange={(event) =>
-                        setIncrementer(parseInt(event.target.value) || 0)
+                        setIncrementer(parseInt(event.target.value) || 1)
                     }
                 />
             </label>
